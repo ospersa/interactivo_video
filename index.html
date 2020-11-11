@@ -11,8 +11,10 @@
 
 <body>
     <div class="video-wrapper">
-        <video autoplay id="video">
+        <video autoplay muted id="video">
             <source src="assets/video/master.mp4" type="video/mp4">
+            <source src="assets/video/master.ogv" type="video/ogg">
+            <source src="assets/video/master.webm" type="video/webm">
         </video>
     </div>
     <main id="exercise">
@@ -45,7 +47,7 @@
                             </span>
                         </label>
                     </div>
-                    <button class="send btn animate__animated animate__pulse animate__infinite" data-target="#q1" data-modal="#modalQ1">enviar</button>
+                    <button class="send btn animate__animated animate__pulse animate__infinite" id="s1" data-target="#q1" data-modal="#modalQ1">enviar</button>
                 </div>
                 <div class="feedback animate__animated">
                 </div>
@@ -98,7 +100,7 @@
                             </span>
                         </label>
                     </div>
-                    <button class="send btn animate__animated animate__pulse animate__infinite" data-target="#q2" data-modal="#modalQ2">enviar</button>
+                    <button class="send btn animate__animated animate__pulse animate__infinite" id="s2" data-target="#q2" data-modal="#modalQ2">enviar</button>
                 </div>
                 <div class="feedback animate__animated">
                 </div>

@@ -212,6 +212,7 @@ body {
                 }
             }
             &.send {
+                display: none;
                 &::after {
                     content: '';
                     position: absolute;

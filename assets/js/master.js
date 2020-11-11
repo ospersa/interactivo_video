@@ -12,11 +12,12 @@ $(document).ready(function () {
 
     let pauseVideo = true;
     let video = $('#video');
-    let firstPart = 8.1;
-    let secondPart = 49.5;
+    video.prop('muted', false);
+    let firstPart = 9;
+    let secondPart = 50;
     let thirdPart = 85;
     let show1 = 43;
-    let show2 = 71;
+    let show2 = 70.5;
     let showQ1 = false;
     let showQ2 = false;
     $('#start').on('click', function () {
@@ -79,6 +80,9 @@ $(document).ready(function () {
                     duration: 600,
                     delay: (el, i) => 70 * (i + 1)
                 })
+                setTimeout(function(){
+                    $('#s1').fadeIn('slow')
+                }, 7000)
         } else if (currentTime >= secondPart && pauseVideo == true && currentTime <= show2) {
             $(this).trigger('pause');
             pauseVideo = false
@@ -107,11 +111,13 @@ $(document).ready(function () {
             $('.opt').each(function() {
                 $(this).addClass('animate__fadeIn');
             })
+            setTimeout(function(){
+                $('#s2').fadeIn('slow')
+            }, 15000)
         } else if (currentTime >= thirdPart && pauseVideo == true) {
             $(this).trigger('pause');
             pauseVideo = false
         }
-        console.log(pauseVideo);
     })
     $('#btnModalQ1').on('click', function () {
         $('#modalQ1').css('display', 'flex');
@@ -172,7 +178,7 @@ function validateAnswer(idQ, modal) {
             $(modal + ' .question').removeClass('animate__bounceInDown').addClass('animate__bounceOutUp');
             $(modal + ' .feedback').html(
                 '<div class="message">' + 
-                    '<p>Recuerda: Un municipio con estas características es considerado un municipio de baja dinámica. Si sus actividades económicas están enfocadas en turismo o agricultura, puede optar por instrumento económicos de educación, por ejemplo, negocios verdes o certificaciones y sellos, lo que puede contribuir a incrementar ingresos y a la vez garantizar la conservación de la biodiversidad.</p><br>' + 
+                    '<p>Un municipio con estas características es considerado un municipio de baja dinámica. Si sus actividades económicas están enfocadas en turismo o agricultura, puede optar por instrumento económicos de educación, por ejemplo, negocios verdes o certificaciones y sellos, lo que puede contribuir a incrementar ingresos y a la vez garantizar la conservación de la biodiversidad.</p><br>' + 
                     '<p>De esta manera, el instrumento de tarifas se puede usar para definir un valor de entrada a las áreas de conservación. Los instrumentos de tasas ambientales y planes parciales son más recomendados para aplicarse en municipios de alta dinámica.</p>' + 
                     '<button class="restart btn" onclick="showQuestion(\'#modalQ2\');">reintentar</button>' +
                 '</div>'
