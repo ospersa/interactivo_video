@@ -1,0 +1,8 @@
+{
+  "in": ["sass/master.scss"],
+  "out": "css/master.min.css",
+  "sass": true,
+  "minifier": true,
+  "browsers": ["last 8 versions", "Android 2.3"],
+  "autoprefixer": {"browsers": ["> 8%", "last 10 versions", "Firefox > 18", "Opera 12.1", "ios 6"]}
+}
