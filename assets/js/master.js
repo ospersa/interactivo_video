@@ -1,3 +1,22 @@
+var req = new XMLHttpRequest();
+req.open('GET', 'assets/video/master_.webm', true);
+req.responseType = 'blob';
+req.onload = function() {
+    // Onload is triggered even on 404
+    // se we need to check the status code
+    if (this.status === 200) {
+        $('.loader').fadeOut('slow');
+        var videoBlob = this.response
+        var vid = URL.createObjectURL(videoBlob);
+        video.src = vid;
+        $('.play').css('opacity', 1);
+    }
+}
+req.onerror = function() {
+    console.log("Se presentaron errores en la descarga del video")
+}
+req.send();
+
 $(document).ready(function () {
 
     // Wrap every letter in a span
@@ -12,7 +31,6 @@ $(document).ready(function () {
 
     let pauseVideo = true;
     let video = $('#video');
-    video.prop('muted', false);
     let firstPart = 9;
     let secondPart = 50;
     let thirdPart = 85;
@@ -20,6 +38,12 @@ $(document).ready(function () {
     let show2 = 70.5;
     let showQ1 = false;
     let showQ2 = false;
+    video.prop('muted', false);
+
+    $('#play').on('click', function() {
+        video.trigger('play');
+        $('.play').fadeOut('slow');
+    })
     $('#start').on('click', function () {
         video.trigger('play');
         pauseVideo = false;
@@ -36,9 +60,9 @@ $(document).ready(function () {
         $(modal + ' .question').removeClass('animate__bounceOutUp').addClass('animate__bounceInUp');
         $(modal + ' .feedback').removeClass('animate__bounceInUp').addClass('animate__bounceOutDown');
     })
-    $('#video').on('timeupdate', function () {
+    video.on('timeupdate', function () {
         let currentTime = $(this).prop('currentTime');
-        console.log(currentTime)
+        let duration = $(this).prop('duration');
         if (currentTime >= firstPart && currentTime < secondPart && pauseVideo == true && showQ1 == false) {
             $(this).trigger('pause');
             $('#first-part').fadeIn();
@@ -117,6 +141,8 @@ $(document).ready(function () {
         } else if (currentTime >= thirdPart && pauseVideo == true) {
             $(this).trigger('pause');
             pauseVideo = false
+        } else if (currentTime >= (duration - 1)) {
+            $(this).trigger('pause');
         }
     })
     $('#btnModalQ1').on('click', function () {
